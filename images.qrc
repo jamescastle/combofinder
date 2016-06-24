@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/icons">
+        <file alias="option">zahnrad.jpg</file>
+        <file alias="show">show.png</file>
+        <file alias="edit">edit.png</file>
+        <file alias="delete">trash.png</file>
+        <file alias="save">save.png</file>
+    </qresource>
+</RCC>
