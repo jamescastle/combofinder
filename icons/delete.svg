@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   id="svg4240"
+   viewBox="0 0 132.67812 152.38858"
+   height="43.007442mm"
+   width="37.444714mm">
+  <defs
+     id="defs4242" />
+  <metadata
+     id="metadata4245">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-227.86787,-331.33074)"
+     style="display:inline"
+     id="layer3">
+    <path
+       id="path4265"
+       d="M 238.21429,359.50504 252.5,480.21932 l 82.67857,0 13.57143,-120"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path4267"
+       d="m 293.57143,359.14792 0,110.71428"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path4267-7"
+       d="m 266.35743,359.2455 6.57085,110.51912"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path4267-7-5"
+       d="m 321.67828,359.2455 -6.57085,110.51912"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path4299"
+       d="m 234.6141,345.00286 119.18565,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:13.30300045;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path4301"
+       d="m 278.54957,338.05806 29.54696,-0.12626"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:13.19999981;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+</svg>
