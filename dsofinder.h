@@ -15,6 +15,7 @@
 #include <QFile>
 #include <QInputDialog>
 #include <QTranslator>
+#include <QtSvg>
 
 #include <version.h>
 namespace Ui {

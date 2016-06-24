@@ -6,7 +6,7 @@
 
 static const int V_YEAR = 2016;
 static const int V_MONTH = 06;
-static const int V_DAY = 22;
+static const int V_DAY = 25;
 
 static const QString currentversion = QStringLiteral("%1-").arg(V_YEAR)+QStringLiteral("%1-").arg(V_MONTH)+QStringLiteral("%1").arg(V_DAY);
 

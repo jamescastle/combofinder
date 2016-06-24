@@ -47,193 +47,193 @@
         <translation>Differenzsuche</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="351"/>
+        <location filename="../dsofinder.ui" line="357"/>
         <source>Show BG</source>
         <translation>Referenzbild anzeigen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="371"/>
+        <location filename="../dsofinder.ui" line="389"/>
         <source>Edit caption</source>
         <translation>Benennung ändern</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="385"/>
+        <location filename="../dsofinder.ui" line="415"/>
         <source>Delete BG</source>
         <translation>Referenzbild löschen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="407"/>
+        <location filename="../dsofinder.ui" line="443"/>
         <source>Save as BG</source>
         <translation>Als Referenzbild speichern</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="443"/>
+        <location filename="../dsofinder.ui" line="479"/>
         <source>onTop</source>
         <translation>im Vordergrund</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="504"/>
+        <location filename="../dsofinder.ui" line="540"/>
         <source>Behavior / Multimonitor</source>
         <translation>Verhalten / Multimonitor</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="541"/>
+        <location filename="../dsofinder.ui" line="577"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this, if you want to use half-sized grafics&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Diesen Haken setzen, wenn Grafiken mit halber Größe im Spiel genutzt werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="544"/>
+        <location filename="../dsofinder.ui" line="580"/>
         <source>Use halfisize</source>
         <translation>Grafiken in halber Größe</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="559"/>
+        <location filename="../dsofinder.ui" line="595"/>
         <source>Halfsized grafics</source>
         <translation>Nutze Grafiken in halber Größe</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="586"/>
+        <location filename="../dsofinder.ui" line="622"/>
         <source>Take Screen Hit</source>
         <translation>&quot;Screenshot&quot; angeklickt</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="592"/>
+        <location filename="../dsofinder.ui" line="628"/>
         <source>Jump to previous position</source>
         <translation>Springe auf vorherige Position</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="599"/>
+        <location filename="../dsofinder.ui" line="635"/>
         <source>Stay big</source>
         <translation>Bleibe maximiert</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="644"/>
+        <location filename="../dsofinder.ui" line="680"/>
         <source>Performance / Appearance</source>
         <translation>Leistung / Darstellung</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="663"/>
+        <location filename="../dsofinder.ui" line="699"/>
         <source>Include Items</source>
         <translation>Zu suchende Sammlerstücke</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="669"/>
+        <location filename="../dsofinder.ui" line="705"/>
         <source>Basic</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="676"/>
+        <location filename="../dsofinder.ui" line="712"/>
         <source>Adventure</source>
         <translation>Abenteuer</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="689"/>
+        <location filename="../dsofinder.ui" line="725"/>
         <source>Choose event:</source>
         <translation>Wähle Event:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="733"/>
+        <location filename="../dsofinder.ui" line="769"/>
         <source>Take Screen Waittime for Resize</source>
         <translation>Wartezeit vor Größenänderung</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="827"/>
+        <location filename="../dsofinder.ui" line="863"/>
         <source>Searchtimer</source>
         <translation>Suchzeit</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="836"/>
+        <location filename="../dsofinder.ui" line="872"/>
         <source>Show</source>
         <translation>Anzeigen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="871"/>
+        <location filename="../dsofinder.ui" line="907"/>
         <source>Colors</source>
         <translation>Farben</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="889"/>
+        <location filename="../dsofinder.ui" line="925"/>
         <source>Std.:</source>
         <translation>Std.:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="950"/>
+        <location filename="../dsofinder.ui" line="986"/>
         <source>Event:</source>
         <translation>Event:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="990"/>
+        <location filename="../dsofinder.ui" line="1026"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="1034"/>
+        <location filename="../dsofinder.ui" line="1070"/>
         <source>Options</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="1144"/>
+        <location filename="../dsofinder.ui" line="1180"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="1183"/>
+        <location filename="../dsofinder.ui" line="1218"/>
         <source>!!Zoom out as far as possible!!</source>
         <translation>!! So weit herauszoomen wie möglich !!</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="290"/>
+        <location filename="../dsofinder.cpp" line="288"/>
         <source>Background file has wrong resolution!</source>
         <translation>Das Referenzbild hat die falsche Auflösung!</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="295"/>
-        <location filename="../dsofinder.cpp" line="413"/>
+        <location filename="../dsofinder.cpp" line="293"/>
+        <location filename="../dsofinder.cpp" line="411"/>
         <source>No valid background file.</source>
         <translation>Kein gültiges Referenzbild.</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="387"/>
+        <location filename="../dsofinder.cpp" line="385"/>
         <source>Main Island S5</source>
         <translation>Hauptinsel S5</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="388"/>
+        <location filename="../dsofinder.cpp" line="386"/>
         <source>Save in Slot %1</source>
         <translation>In Slot %1 speichern</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="388"/>
+        <location filename="../dsofinder.cpp" line="386"/>
         <source>Enter caption:</source>
         <translation>Beschreibung:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="397"/>
+        <location filename="../dsofinder.cpp" line="395"/>
         <source>Confirm overwrite</source>
         <translation>Überschreiben bestätigen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="397"/>
+        <location filename="../dsofinder.cpp" line="395"/>
         <source>Do you really want to replace the background in Slot %1?</source>
         <translation>Willst du das Referenzbild in Slot %1 wirklich überschreiben?</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="422"/>
+        <location filename="../dsofinder.cpp" line="420"/>
         <source>Edit Slot %1</source>
         <translation>Bearbeite Slot %1</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="422"/>
+        <location filename="../dsofinder.cpp" line="420"/>
         <source>Enter new caption:</source>
         <translation>Neue Beschreibung eingeben:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="432"/>
+        <location filename="../dsofinder.cpp" line="430"/>
         <source>Delete Background</source>
         <translation>Referenzbild löschen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="432"/>
+        <location filename="../dsofinder.cpp" line="430"/>
         <source>Do you really want to delete the background file in Slot %1?</source>
         <translation>Willst du das Referenzbild in Slot %1 wirklich löschen?</translation>
     </message>
