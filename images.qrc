@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="show">icons/show.svg</file>
+        <file alias="edit">icons/edit.svg</file>
+        <file alias="save">icons/save.svg</file>
+        <file alias="delete">icons/delete.svg</file>
+        <file alias="option">icons/option.svg</file>
+    </qresource>
+</RCC>
