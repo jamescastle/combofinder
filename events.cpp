@@ -3,11 +3,11 @@
 //THIS FILE CONTAINS BASIC INFORMATION ON EVENTS AND RELATED ITEMS
 //FOR DETAILED ITEM DEFINITIONS SEE items.cpp
 
-void DsoFinder::init_events()
+DsoFinder::event_data DsoFinder::get_events()
 {
-    eventcount = 7;
+    int eventcount = 7;
 
-    events = new event[eventcount];
+    event* events = new event[eventcount];
     i=0;
 
     events[0].caption = tr("None");
@@ -37,4 +37,9 @@ void DsoFinder::init_events()
     events[6].caption = tr("Easter 2015+");
     events[6].id = 6;
     events[6].itemcount = 1;
+
+    event_data my_events;
+    my_events.eventcount = eventcount;
+    my_events.events = events;
+    return my_events;
 }

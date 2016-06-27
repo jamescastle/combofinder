@@ -70,6 +70,11 @@ public:
         int itemcount;
     };
 
+    struct event_data {
+        event* events;
+        int eventcount;
+    };
+
     struct configuration {
         int vid;
 
@@ -96,8 +101,6 @@ public:
     //PIXELFINDER_RELATED OBJECTS/VARIABLES
     item* items;
     int itemcount;
-    event* events;
-    int eventcount;
     int*** pixels;
     int shape_disc,shape_negating;
     int avatar_width, avatar_heigth;
@@ -153,7 +156,7 @@ public:
     void draw_valids();
     void draw_discovery(QPoint coords, QColor color, Qt::PenStyle style);
     void init_items();
-    void init_events();
+    event_data get_events();
     void load_settings();
     void load_background();
     void check_version();
@@ -164,6 +167,7 @@ public:
     bool is_green(int r, int g, int b);
     bool is_brigth(int g);
 
+    void populate_event_combo();
 protected:
     void resizeEvent(QResizeEvent* event);
     void changeEvent(QEvent *e);
