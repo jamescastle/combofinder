@@ -30,7 +30,7 @@ void DsoFinder::init_items()
     delete [] events.events;
 
     items = new item[itemcount];
-    i=0;
+    int i=0;
 
     if(!config.usehalfsize) //All Items for normal size
     {

@@ -84,11 +84,11 @@ void DsoFinder::on_takeButton_clicked()
         d_width = originalPixmap.width();
         d_heigth = originalPixmap.height();
         pixels = new int**[originalPixmap.width()];
-        for(i=0;i<originalPixmap.width();i++) {
+        for(int i=0;i<originalPixmap.width();i++) {
             pixels[i] = new int*[originalPixmap.height()];
-            for(k=0;k<originalPixmap.height();k++) {
+            for(int k=0;k<originalPixmap.height();k++) {
                 pixels[i][k] = new int[3];
-                for(j=0;j<3;j++) {
+                for(int j=0;j<3;j++) {
                     pixels[i][k][j] = 0;
                 }
             }
@@ -125,7 +125,7 @@ void DsoFinder::on_debugsaveButton_clicked()
 int DsoFinder::get_bgcount()
 {
     int count = 0;
-    for(i=0;i<99;i++) {
+    for(int i=0;i<99;i++) {
         if(QFile::exists(QString("background%1.png").arg(i))) {
             if(i!=count) {
                 QFile::rename(QString("background%1.png").arg(i),QString("background%1.png").arg(count));
@@ -225,9 +225,9 @@ void DsoFinder::on_findButton_clicked()
     if(get_method()==0) {           //M E T H O D  1:  P I X E L  F O O T P R I N T S
 
         //RESET PIXELARRAY
-        for(x=0;x<originalPixmap.width();x++) {
-            for(y=0;y<originalPixmap.height();y++) {
-                for(j=0;j<3;j++) {
+        for(int x=0;x<originalPixmap.width();x++) {
+            for(int y=0;y<originalPixmap.height();y++) {
+                for(int j=0;j<3;j++) {
                     pixels[x][y][j] = 0;
                 }
             }
@@ -235,28 +235,25 @@ void DsoFinder::on_findButton_clicked()
 
         //SCAN SCREENSHOT AND FILL PIXELARRAY
         //ACTUALLY ITS FASTER TO WRITE ALL PIXELS INTO AN INT-ARRAY FIRST THEN DIRECTLY ACCESS THE QImage-CLASS PIXELVALUE IN FURTHER CALCULATIONS. MIGHT BE COMPILER DEPENDEND.
-        for(x=0;x<originalPixmap.width();x++) {
-            for(y=0;y<originalPixmap.height();y++) {
+        for(int x=0;x<originalPixmap.width();x++) {
+            for(int y=0;y<originalPixmap.height();y++) {
                 imgrgb = originalImage.pixel(x,y);
-                r = qRed(imgrgb);
-                g = qGreen(imgrgb);
-                b = qBlue(imgrgb);
-                pixels[x][y][0] = r;
-                pixels[x][y][1] = g;
-                pixels[x][y][2] = b;
+                pixels[x][y][0] = qRed(imgrgb);
+                pixels[x][y][1] = qGreen(imgrgb);
+                pixels[x][y][2] = qBlue(imgrgb);
             }
         }
 
         //MAIN SEARCH ALGORITHM
-        for(x=borderbox;x<originalPixmap.width()-borderbox;x++) {       //SCAN IMAGE (X)
-            for(y=borderbox;y<originalPixmap.height()-borderbox;y++) {  //SCAN IMAGE (Y)
-                for(i=0;i<itemcount;i++) {                          //SCAN FOR ALL DEFINED ITEMS (items.cpp)
+        for(int x=borderbox;x<originalPixmap.width()-borderbox;x++) {       //SCAN IMAGE (X)
+            for(int y=borderbox;y<originalPixmap.height()-borderbox;y++) {  //SCAN IMAGE (Y)
+                for(int i=0;i<itemcount;i++) {                          //SCAN FOR ALL DEFINED ITEMS (items.cpp)
                     item_found = false;
-                    for(j=0; j<items[i].shapecount; j++) {            //SCAN FOR ALL DEFINED SHAPES
+                    for(int j=0; j<items[i].shapecount; j++) {            //SCAN FOR ALL DEFINED SHAPES
                         if(!item_found) {
                             shape_disc = 0;
                             shape_negating = 0;
-                            for(k=0; k<items[i].shape[j].pixelcount; k++) //SCAN ALL DEFINED PIXELS OF ITEMS
+                            for(int k=0; k<items[i].shape[j].pixelcount; k++) //SCAN ALL DEFINED PIXELS OF ITEMS
                             {
                                 if(items[i].shape[j].pixelcount - items[i].shape[j].needed + shape_disc >= k) { //SPEED UP IF DISCOVERY IMPOSSIBLE
                                     if( pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][0]>items[i].shape[j].pixel[k].r.min &&
@@ -310,13 +307,13 @@ void DsoFinder::on_findButton_clicked()
             count_brigth_min=10;    //MIN# OF BRIGHT GREEN PIXELS IN AREA
 
             //FILL DIVIMAGE WITH VALUES OF DIFFERENCE
-            for(x=0;x<divImage.width();x++) {
-                for(y=0;y<divImage.height();y++) {
+            for(int x=0;x<divImage.width();x++) {
+                for(int y=0;y<divImage.height();y++) {
                     imgrgb = originalImage.pixel(x,y);
                     bg_imgrgb = BGImage.pixel(x,y);
-                    r = abs(qRed(bg_imgrgb)-qRed(imgrgb));
-                    g = abs(qGreen(bg_imgrgb)-qGreen(imgrgb));
-                    b = abs(qBlue(bg_imgrgb)-qBlue(imgrgb));
+                    int r = abs(qRed(bg_imgrgb)-qRed(imgrgb));
+                    int g = abs(qGreen(bg_imgrgb)-qGreen(imgrgb));
+                    int b = abs(qBlue(bg_imgrgb)-qBlue(imgrgb));
 
                     if(b>250) divrgb=qRgb(0,0,0);   //IF PIXEL IS BLUE GET RID OF IT (NEEDED FOR FURTHER DISCRIMINATION)
                     else divrgb=qRgb(r,g,b);
@@ -330,15 +327,15 @@ void DsoFinder::on_findButton_clicked()
             paint_dev2.setPen(pen_dev);
 
             //MAIN SEARCH ALGORITHM
-            for(x=0;x<divImage.width()-2*fieldwidth;x++) {
-                for(y=0;y<divImage.height()-2*fieldwidth;y++) {
+            for(int x=0;x<divImage.width()-2*fieldwidth;x++) {
+                for(int y=0;y<divImage.height()-2*fieldwidth;y++) {
                     count_ok=0;
                     count_brigth=0;
                     count_double=0;
                     divrgb=divImage.pixel(x,y);
                     if(is_green(qRed(divrgb),qGreen(divrgb),qBlue(divrgb))) {   //IF PIXEL IS GREEN SCAN FIELDWIDTH*FIELDWIDTH FOR BUILDING SITE
-                        for(i=0;i<fieldwidth;i++){
-                            for(k=0;k<fieldwidth;k++){
+                        for(int i=0;i<fieldwidth;i++){
+                            for(int k=0;k<fieldwidth;k++){
                                 divrgb=divImage.pixel(x+i,y+k);
                                 if(is_green(qRed(divrgb),qGreen(divrgb),qBlue(divrgb))) {   //COUNT GREEN PIXELS
                                     count_ok++;

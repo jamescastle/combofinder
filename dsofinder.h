@@ -131,9 +131,6 @@ public:
     QPen pen_dev;
     QRgb imgrgb;
 
-    int x,y;
-    int i,k,j,r,g,b;
-
     int totaldiscoverys;
     int d_width,d_heigth,borderbox;
 

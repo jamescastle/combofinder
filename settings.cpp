@@ -74,7 +74,7 @@ void DsoFinder::init_ui_options()
     select_language(config.language);
 
     ui->bgcomboBox->view()->setMinimumWidth(150);
-    for(i=0;i<bg_count;i++) {
+    for(int i=0;i<bg_count;i++) {
         ui->bgcomboBox->addItem(QString("%1: %2").arg(i+1).arg(config.bg_caption[i]));
     }
     ui->bgcomboBox->addItem(tr("+: New Slot"));
