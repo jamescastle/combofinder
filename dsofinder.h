@@ -115,16 +115,12 @@ public:
     int cvid;
 
     QMessageBox msgbox;
-    QElapsedTimer timer;
     QSettings* configfile;
     configuration config;
     FILE* results;
 
     QPixmap originalPixmap;
     QImage originalImage;
-    QPainter paint_dev;
-    QPen pen_dev;
-    QRgb imgrgb;
 
     int totaldiscoverys;
     int d_width,d_heigth,borderbox;

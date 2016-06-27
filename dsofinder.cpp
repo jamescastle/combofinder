@@ -66,6 +66,7 @@ void DsoFinder::on_takeButton_clicked()
     set_optionwindow(false);
     if(!config.stay_big) {
         set_gui(true,debug);
+        QElapsedTimer timer;
         timer.start();
         while(timer.elapsed()< config.waittime);                  // WAIT 600ms FOR PROPER RESIZING ON SLOWER MACHINES
     }
@@ -142,6 +143,9 @@ void DsoFinder::draw_discovery(QPoint coords, QColor color, Qt::PenStyle style)
     //ON DISCOVERY PAINT CIRCLE OF GIVEN COLOR AND STYLE
     /*if(!(coords.x() <= avatar_width && coords.y() <= avatar_heigth))    //Do not find something on your Avatar :)*/
     {
+        QPen pen_dev;
+        QPainter paint_dev;
+
         pen_dev.setColor(color);
         pen_dev.setStyle(style);
         paint_dev.setPen(pen_dev);
@@ -208,6 +212,10 @@ void DsoFinder::draw_valids() // DRAW ALL VALID DISCOVERYS
 
 void DsoFinder::on_findButton_clicked()
 {
+    QElapsedTimer timer;
+    QPainter paint_dev;
+    QPen pen_dev;
+
     set_optionwindow(false);
     setactive(false);
                                     //C O M M O N
@@ -237,7 +245,7 @@ void DsoFinder::on_findButton_clicked()
         //ACTUALLY ITS FASTER TO WRITE ALL PIXELS INTO AN INT-ARRAY FIRST THEN DIRECTLY ACCESS THE QImage-CLASS PIXELVALUE IN FURTHER CALCULATIONS. MIGHT BE COMPILER DEPENDEND.
         for(int x=0;x<originalPixmap.width();x++) {
             for(int y=0;y<originalPixmap.height();y++) {
-                imgrgb = originalImage.pixel(x,y);
+                QRgb imgrgb = originalImage.pixel(x,y);
                 pixels[x][y][0] = qRed(imgrgb);
                 pixels[x][y][1] = qGreen(imgrgb);
                 pixels[x][y][2] = qBlue(imgrgb);
@@ -309,7 +317,7 @@ void DsoFinder::on_findButton_clicked()
             //FILL DIVIMAGE WITH VALUES OF DIFFERENCE
             for(int x=0;x<divImage.width();x++) {
                 for(int y=0;y<divImage.height();y++) {
-                    imgrgb = originalImage.pixel(x,y);
+                    QRgb imgrgb = originalImage.pixel(x,y);
                     QRgb bg_imgrgb = BGImage.pixel(x,y);
                     int r = abs(qRed(bg_imgrgb)-qRed(imgrgb));
                     int g = abs(qGreen(bg_imgrgb)-qGreen(imgrgb));
