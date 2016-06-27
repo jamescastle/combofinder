@@ -102,9 +102,7 @@ public:
     item* items;
     int itemcount;
     int*** pixels;
-    int shape_disc,shape_negating;
     int avatar_width, avatar_heigth;
-    bool item_found;
     QVector<QVector<int> > discovery;
 
     //BUILDING_SITE_RELATED OBJECTS/VARIABLES

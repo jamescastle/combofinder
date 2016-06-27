@@ -248,11 +248,11 @@ void DsoFinder::on_findButton_clicked()
         for(int x=borderbox;x<originalPixmap.width()-borderbox;x++) {       //SCAN IMAGE (X)
             for(int y=borderbox;y<originalPixmap.height()-borderbox;y++) {  //SCAN IMAGE (Y)
                 for(int i=0;i<itemcount;i++) {                          //SCAN FOR ALL DEFINED ITEMS (items.cpp)
-                    item_found = false;
+                    bool item_found = false;
                     for(int j=0; j<items[i].shapecount; j++) {            //SCAN FOR ALL DEFINED SHAPES
                         if(!item_found) {
-                            shape_disc = 0;
-                            shape_negating = 0;
+                            int shape_disc = 0;
+                            bool shape_negating = false;
                             for(int k=0; k<items[i].shape[j].pixelcount; k++) //SCAN ALL DEFINED PIXELS OF ITEMS
                             {
                                 if(items[i].shape[j].pixelcount - items[i].shape[j].needed + shape_disc >= k) { //SPEED UP IF DISCOVERY IMPOSSIBLE
@@ -264,11 +264,11 @@ void DsoFinder::on_findButton_clicked()
                                         pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][2]<items[i].shape[j].pixel[k].b.max)
                                     {
                                         if(!items[i].shape[j].pixel[k].negating) shape_disc++;
-                                        else shape_negating++;
+                                        else shape_negating=true;
                                     }
                                 }
                             }
-                            if(shape_disc >= items[i].shape[j].needed && shape_negating==0) {             //IF ITEM IS DISCOVERED MARK IT ON IMAGE AND WRITE LOGFILE. REWORK: WRITE DISCOVERYS INTO LIST AND DRAW AFTER THE FULL SCAN. FALSE POSITIVES IN AVATAR CAN THUS BE FILTERED OUT.
+                            if(shape_disc >= items[i].shape[j].needed && !shape_negating) {             //IF ITEM IS DISCOVERED MARK IT ON IMAGE AND WRITE LOGFILE. REWORK: WRITE DISCOVERYS INTO LIST AND DRAW AFTER THE FULL SCAN. FALSE POSITIVES IN AVATAR CAN THUS BE FILTERED OUT.
                                 item_found = true;
                                 //fprintf(results,"Possible %s (Shape %i) found at %i %i\n",items[i].caption,j,x,y);
                                 discovery.append(QVector<int>() << x << y << i << j << 1); // 0:X 1:Y 2:Item 3:Shape 4:Valid
