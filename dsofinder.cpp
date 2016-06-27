@@ -1,6 +1,7 @@
 #include "dsofinder.h"
 #include "ui_dsofinder.h"
-#include "QDesktopWidget"
+#include "QScreen"
+#include "QWindow"
 
 DsoFinder::DsoFinder(int argc,char* argv[],QWidget *parent) :
     QMainWindow(parent),
@@ -67,7 +68,17 @@ void DsoFinder::on_takeButton_clicked()
         timer.start();
         while(timer.elapsed()< config.waittime);                  // WAIT 600ms FOR PROPER RESIZING ON SLOWER MACHINES
     }
-    originalPixmap = QPixmap::grabWindow(QApplication::desktop()->winId());
+
+    // grab primary screen window
+    QScreen *screen = QGuiApplication::primaryScreen();
+    if (const QWindow *window = windowHandle())
+        screen = window->screen();
+    if (!screen) {
+        set_gui(false,debug);
+        return;
+    }
+    originalPixmap = screen->grabWindow(0);
+
     if(originalPixmap.width() != d_width || originalPixmap.height() != d_heigth) { //ONLY REALLOCATE IF SCREENSIZE HAS CHANGED (MULTIMONITOR) -> DELETE MISSING!
         d_width = originalPixmap.width();
         d_heigth = originalPixmap.height();
