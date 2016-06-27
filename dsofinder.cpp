@@ -35,6 +35,8 @@ DsoFinder::DsoFinder(int argc,char* argv[],QWidget *parent) :
     avatar_heigth = 280;
     bg_exist = false;
     bg_count = get_bgcount(); //CHECK CURRENT DIRECTORY FOR VALID BACKGROUND FILES
+    itemcount = 0;
+
     load_settings(); //LOAD USER-DEFINED VARIABLES
     check_version(); //CHECK FOR OUT OF DATE VERSION
     init_ui_options(); //SET OPTIONS IN THE SETTINGS TAB

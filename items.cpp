@@ -10,6 +10,15 @@
 
 void DsoFinder::init_items()
 {
+    // free memory if items already declared
+    if (itemcount != 0)
+    {
+        for(int i = 0; i < itemcount; i++)
+            delete [] items[i].shape;
+
+        delete [] items;
+    }
+
     borderbox = 10;
     itemcount = 0;
     if(config.useitems_basic) itemcount += 8;
