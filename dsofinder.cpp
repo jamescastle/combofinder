@@ -300,21 +300,22 @@ void DsoFinder::on_findButton_clicked()
         if(bg_exist) {
 
             //INIT VARIABLES
-            divImage = originalPixmap.toImage(); //CREATE DIVIMAGE FROM CURRENT PIXMAP
+            QImage divImage = originalPixmap.toImage(); //CREATE DIVIMAGE FROM CURRENT PIXMAP
 
-            int fieldwidth = 10;    //SIZE OF SEARCHAREA FOR BUILDING SITES
-            count_ok_min=70;        //MIN# OF GREEN PIXELS IN FIELDWIDTH*FIELDWIDTH AREA
-            count_brigth_min=10;    //MIN# OF BRIGHT GREEN PIXELS IN AREA
+            int fieldwidth = 10;        //SIZE OF SEARCHAREA FOR BUILDING SITES
+            int count_ok_min=70;        //MIN# OF GREEN PIXELS IN FIELDWIDTH*FIELDWIDTH AREA
+            int count_brigth_min=10;    //MIN# OF BRIGHT GREEN PIXELS IN AREA
 
             //FILL DIVIMAGE WITH VALUES OF DIFFERENCE
             for(int x=0;x<divImage.width();x++) {
                 for(int y=0;y<divImage.height();y++) {
                     imgrgb = originalImage.pixel(x,y);
-                    bg_imgrgb = BGImage.pixel(x,y);
+                    QRgb bg_imgrgb = BGImage.pixel(x,y);
                     int r = abs(qRed(bg_imgrgb)-qRed(imgrgb));
                     int g = abs(qGreen(bg_imgrgb)-qGreen(imgrgb));
                     int b = abs(qBlue(bg_imgrgb)-qBlue(imgrgb));
 
+                    QRgb divrgb;
                     if(b>250) divrgb=qRgb(0,0,0);   //IF PIXEL IS BLUE GET RID OF IT (NEEDED FOR FURTHER DISCRIMINATION)
                     else divrgb=qRgb(r,g,b);
 
@@ -323,16 +324,17 @@ void DsoFinder::on_findButton_clicked()
             }
 
             //INIT ADDITIONAL PAINT DEVICE
+            QPainter paint_dev2;
             paint_dev2.begin(&divImage);
             paint_dev2.setPen(pen_dev);
 
             //MAIN SEARCH ALGORITHM
             for(int x=0;x<divImage.width()-2*fieldwidth;x++) {
                 for(int y=0;y<divImage.height()-2*fieldwidth;y++) {
-                    count_ok=0;
-                    count_brigth=0;
-                    count_double=0;
-                    divrgb=divImage.pixel(x,y);
+                    int count_ok=0;
+                    int count_brigth=0;
+                    int count_double=0;
+                    QRgb divrgb=divImage.pixel(x,y);
                     if(is_green(qRed(divrgb),qGreen(divrgb),qBlue(divrgb))) {   //IF PIXEL IS GREEN SCAN FIELDWIDTH*FIELDWIDTH FOR BUILDING SITE
                         for(int i=0;i<fieldwidth;i++){
                             for(int k=0;k<fieldwidth;k++){
