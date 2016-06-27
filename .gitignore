@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Compiled Object files
 *.slo
 *.lo
@@ -28,3 +29,7 @@
 *.out
 *.app
 combofinder.pro.user
+=======
+# Ignore local qtcreator user settings
+/*.user*
+>>>>>>> pr/2
