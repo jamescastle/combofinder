@@ -36,7 +36,6 @@ DsoFinder::DsoFinder(int argc,char* argv[],QWidget *parent) :
     bg_count = get_bgcount(); //CHECK CURRENT DIRECTORY FOR VALID BACKGROUND FILES
     load_settings(); //LOAD USER-DEFINED VARIABLES
     check_version(); //CHECK FOR OUT OF DATE VERSION
-    init_events(); //LOOK AT events.cpp FOR LIST OF EVENTS
     init_ui_options(); //SET OPTIONS IN THE SETTINGS TAB
     init_items(); //LOOK AT items.cpp FOR LIST OF ITEMS
 
@@ -460,6 +459,7 @@ void DsoFinder::changeEvent(QEvent *e)
     {
     case QEvent::LanguageChange:
         ui->retranslateUi(this);
+        populate_event_combo();
         break;
      default:
         break;

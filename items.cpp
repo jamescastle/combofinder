@@ -14,7 +14,11 @@ void DsoFinder::init_items()
     itemcount = 0;
     if(config.useitems_basic) itemcount += 8;
     if(config.useitems_adventure) itemcount += 2;
-    itemcount += events[config.use_event].itemcount;
+
+    // get number of items in event
+    event_data events = get_events();
+    itemcount += events.events[config.use_event].itemcount;
+    delete [] events.events;
 
     items = new item[itemcount];
     i=0;

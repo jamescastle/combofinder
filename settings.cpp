@@ -40,6 +40,19 @@ void DsoFinder::load_settings()
     configfile->sync();
 }
 
+void DsoFinder::populate_event_combo()
+{
+    ui->itemeventcomboBox->clear();
+
+    event_data events = get_events();
+    for(int i=0;i<events.eventcount;i++) {
+        ui->itemeventcomboBox->addItem(events.events[i].caption);
+    }
+    delete [] events.events;
+
+    ui->itemeventcomboBox->setCurrentIndex(config.use_event);
+}
+
 void DsoFinder::init_ui_options()
 {
     //SET OPTION UI
@@ -55,10 +68,7 @@ void DsoFinder::init_ui_options()
 
     ui->halfsizecheckbox->setChecked(config.usehalfsize);
 
-    for(i=0;i<eventcount;i++) {
-        ui->itemeventcomboBox->addItem(events[i].caption);
-    }
-    ui->itemeventcomboBox->setCurrentIndex(config.use_event);
+    populate_event_combo();
 
     ui->languagecomboBox->setCurrentText(config.language);
     select_language(config.language);
