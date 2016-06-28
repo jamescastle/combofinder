@@ -102,37 +102,25 @@ public:
     item* items;
     int itemcount;
     int*** pixels;
-    int shape_disc,shape_negating;
     int avatar_width, avatar_heigth;
-    bool item_found;
     QVector<QVector<int> > discovery;
 
     //BUILDING_SITE_RELATED OBJECTS/VARIABLES
     bool bg_exist;
     int bg_count;
-    QImage BGImage,divImage;
-    QPainter paint_dev2;
-    QRgb bg_imgrgb,divrgb;
-    int count_ok,count_ok_min,count_brigth,count_brigth_min,count_double;
+    QImage BGImage;
 
     //COMMON USED OBJECTS/VARIABLES
     QString currentversion;
     int cvid;
 
     QMessageBox msgbox;
-    QElapsedTimer timer;
     QSettings* configfile;
     configuration config;
     FILE* results;
 
     QPixmap originalPixmap;
     QImage originalImage;
-    QPainter paint_dev;
-    QPen pen_dev;
-    QRgb imgrgb;
-
-    int x,y;
-    int i,k,j,r,g,b;
 
     int totaldiscoverys;
     int d_width,d_heigth,borderbox;

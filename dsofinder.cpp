@@ -66,6 +66,7 @@ void DsoFinder::on_takeButton_clicked()
     set_optionwindow(false);
     if(!config.stay_big) {
         set_gui(true,debug);
+        QElapsedTimer timer;
         timer.start();
         while(timer.elapsed()< config.waittime);                  // WAIT 600ms FOR PROPER RESIZING ON SLOWER MACHINES
     }
@@ -84,11 +85,11 @@ void DsoFinder::on_takeButton_clicked()
         d_width = originalPixmap.width();
         d_heigth = originalPixmap.height();
         pixels = new int**[originalPixmap.width()];
-        for(i=0;i<originalPixmap.width();i++) {
+        for(int i=0;i<originalPixmap.width();i++) {
             pixels[i] = new int*[originalPixmap.height()];
-            for(k=0;k<originalPixmap.height();k++) {
+            for(int k=0;k<originalPixmap.height();k++) {
                 pixels[i][k] = new int[3];
-                for(j=0;j<3;j++) {
+                for(int j=0;j<3;j++) {
                     pixels[i][k][j] = 0;
                 }
             }
@@ -125,7 +126,7 @@ void DsoFinder::on_debugsaveButton_clicked()
 int DsoFinder::get_bgcount()
 {
     int count = 0;
-    for(i=0;i<99;i++) {
+    for(int i=0;i<99;i++) {
         if(QFile::exists(QString("background%1.png").arg(i))) {
             if(i!=count) {
                 QFile::rename(QString("background%1.png").arg(i),QString("background%1.png").arg(count));
@@ -142,6 +143,9 @@ void DsoFinder::draw_discovery(QPoint coords, QColor color, Qt::PenStyle style)
     //ON DISCOVERY PAINT CIRCLE OF GIVEN COLOR AND STYLE
     /*if(!(coords.x() <= avatar_width && coords.y() <= avatar_heigth))    //Do not find something on your Avatar :)*/
     {
+        QPen pen_dev;
+        QPainter paint_dev;
+
         pen_dev.setColor(color);
         pen_dev.setStyle(style);
         paint_dev.setPen(pen_dev);
@@ -208,6 +212,10 @@ void DsoFinder::draw_valids() // DRAW ALL VALID DISCOVERYS
 
 void DsoFinder::on_findButton_clicked()
 {
+    QElapsedTimer timer;
+    QPainter paint_dev;
+    QPen pen_dev;
+
     set_optionwindow(false);
     setactive(false);
                                     //C O M M O N
@@ -225,9 +233,9 @@ void DsoFinder::on_findButton_clicked()
     if(get_method()==0) {           //M E T H O D  1:  P I X E L  F O O T P R I N T S
 
         //RESET PIXELARRAY
-        for(x=0;x<originalPixmap.width();x++) {
-            for(y=0;y<originalPixmap.height();y++) {
-                for(j=0;j<3;j++) {
+        for(int x=0;x<originalPixmap.width();x++) {
+            for(int y=0;y<originalPixmap.height();y++) {
+                for(int j=0;j<3;j++) {
                     pixels[x][y][j] = 0;
                 }
             }
@@ -235,28 +243,25 @@ void DsoFinder::on_findButton_clicked()
 
         //SCAN SCREENSHOT AND FILL PIXELARRAY
         //ACTUALLY ITS FASTER TO WRITE ALL PIXELS INTO AN INT-ARRAY FIRST THEN DIRECTLY ACCESS THE QImage-CLASS PIXELVALUE IN FURTHER CALCULATIONS. MIGHT BE COMPILER DEPENDEND.
-        for(x=0;x<originalPixmap.width();x++) {
-            for(y=0;y<originalPixmap.height();y++) {
-                imgrgb = originalImage.pixel(x,y);
-                r = qRed(imgrgb);
-                g = qGreen(imgrgb);
-                b = qBlue(imgrgb);
-                pixels[x][y][0] = r;
-                pixels[x][y][1] = g;
-                pixels[x][y][2] = b;
+        for(int x=0;x<originalPixmap.width();x++) {
+            for(int y=0;y<originalPixmap.height();y++) {
+                QRgb imgrgb = originalImage.pixel(x,y);
+                pixels[x][y][0] = qRed(imgrgb);
+                pixels[x][y][1] = qGreen(imgrgb);
+                pixels[x][y][2] = qBlue(imgrgb);
             }
         }
 
         //MAIN SEARCH ALGORITHM
-        for(x=borderbox;x<originalPixmap.width()-borderbox;x++) {       //SCAN IMAGE (X)
-            for(y=borderbox;y<originalPixmap.height()-borderbox;y++) {  //SCAN IMAGE (Y)
-                for(i=0;i<itemcount;i++) {                          //SCAN FOR ALL DEFINED ITEMS (items.cpp)
-                    item_found = false;
-                    for(j=0; j<items[i].shapecount; j++) {            //SCAN FOR ALL DEFINED SHAPES
+        for(int x=borderbox;x<originalPixmap.width()-borderbox;x++) {       //SCAN IMAGE (X)
+            for(int y=borderbox;y<originalPixmap.height()-borderbox;y++) {  //SCAN IMAGE (Y)
+                for(int i=0;i<itemcount;i++) {                          //SCAN FOR ALL DEFINED ITEMS (items.cpp)
+                    bool item_found = false;
+                    for(int j=0; j<items[i].shapecount; j++) {            //SCAN FOR ALL DEFINED SHAPES
                         if(!item_found) {
-                            shape_disc = 0;
-                            shape_negating = 0;
-                            for(k=0; k<items[i].shape[j].pixelcount; k++) //SCAN ALL DEFINED PIXELS OF ITEMS
+                            int shape_disc = 0;
+                            bool shape_negating = false;
+                            for(int k=0; k<items[i].shape[j].pixelcount; k++) //SCAN ALL DEFINED PIXELS OF ITEMS
                             {
                                 if(items[i].shape[j].pixelcount - items[i].shape[j].needed + shape_disc >= k) { //SPEED UP IF DISCOVERY IMPOSSIBLE
                                     if( pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][0]>items[i].shape[j].pixel[k].r.min &&
@@ -267,11 +272,11 @@ void DsoFinder::on_findButton_clicked()
                                         pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][2]<items[i].shape[j].pixel[k].b.max)
                                     {
                                         if(!items[i].shape[j].pixel[k].negating) shape_disc++;
-                                        else shape_negating++;
+                                        else shape_negating=true;
                                     }
                                 }
                             }
-                            if(shape_disc >= items[i].shape[j].needed && shape_negating==0) {             //IF ITEM IS DISCOVERED MARK IT ON IMAGE AND WRITE LOGFILE. REWORK: WRITE DISCOVERYS INTO LIST AND DRAW AFTER THE FULL SCAN. FALSE POSITIVES IN AVATAR CAN THUS BE FILTERED OUT.
+                            if(shape_disc >= items[i].shape[j].needed && !shape_negating) {             //IF ITEM IS DISCOVERED MARK IT ON IMAGE AND WRITE LOGFILE. REWORK: WRITE DISCOVERYS INTO LIST AND DRAW AFTER THE FULL SCAN. FALSE POSITIVES IN AVATAR CAN THUS BE FILTERED OUT.
                                 item_found = true;
                                 //fprintf(results,"Possible %s (Shape %i) found at %i %i\n",items[i].caption,j,x,y);
                                 discovery.append(QVector<int>() << x << y << i << j << 1); // 0:X 1:Y 2:Item 3:Shape 4:Valid
@@ -303,21 +308,22 @@ void DsoFinder::on_findButton_clicked()
         if(bg_exist) {
 
             //INIT VARIABLES
-            divImage = originalPixmap.toImage(); //CREATE DIVIMAGE FROM CURRENT PIXMAP
+            QImage divImage = originalPixmap.toImage(); //CREATE DIVIMAGE FROM CURRENT PIXMAP
 
-            int fieldwidth = 10;    //SIZE OF SEARCHAREA FOR BUILDING SITES
-            count_ok_min=70;        //MIN# OF GREEN PIXELS IN FIELDWIDTH*FIELDWIDTH AREA
-            count_brigth_min=10;    //MIN# OF BRIGHT GREEN PIXELS IN AREA
+            int fieldwidth = 10;        //SIZE OF SEARCHAREA FOR BUILDING SITES
+            int count_ok_min=70;        //MIN# OF GREEN PIXELS IN FIELDWIDTH*FIELDWIDTH AREA
+            int count_brigth_min=10;    //MIN# OF BRIGHT GREEN PIXELS IN AREA
 
             //FILL DIVIMAGE WITH VALUES OF DIFFERENCE
-            for(x=0;x<divImage.width();x++) {
-                for(y=0;y<divImage.height();y++) {
-                    imgrgb = originalImage.pixel(x,y);
-                    bg_imgrgb = BGImage.pixel(x,y);
-                    r = abs(qRed(bg_imgrgb)-qRed(imgrgb));
-                    g = abs(qGreen(bg_imgrgb)-qGreen(imgrgb));
-                    b = abs(qBlue(bg_imgrgb)-qBlue(imgrgb));
+            for(int x=0;x<divImage.width();x++) {
+                for(int y=0;y<divImage.height();y++) {
+                    QRgb imgrgb = originalImage.pixel(x,y);
+                    QRgb bg_imgrgb = BGImage.pixel(x,y);
+                    int r = abs(qRed(bg_imgrgb)-qRed(imgrgb));
+                    int g = abs(qGreen(bg_imgrgb)-qGreen(imgrgb));
+                    int b = abs(qBlue(bg_imgrgb)-qBlue(imgrgb));
 
+                    QRgb divrgb;
                     if(b>250) divrgb=qRgb(0,0,0);   //IF PIXEL IS BLUE GET RID OF IT (NEEDED FOR FURTHER DISCRIMINATION)
                     else divrgb=qRgb(r,g,b);
 
@@ -326,19 +332,20 @@ void DsoFinder::on_findButton_clicked()
             }
 
             //INIT ADDITIONAL PAINT DEVICE
+            QPainter paint_dev2;
             paint_dev2.begin(&divImage);
             paint_dev2.setPen(pen_dev);
 
             //MAIN SEARCH ALGORITHM
-            for(x=0;x<divImage.width()-2*fieldwidth;x++) {
-                for(y=0;y<divImage.height()-2*fieldwidth;y++) {
-                    count_ok=0;
-                    count_brigth=0;
-                    count_double=0;
-                    divrgb=divImage.pixel(x,y);
+            for(int x=0;x<divImage.width()-2*fieldwidth;x++) {
+                for(int y=0;y<divImage.height()-2*fieldwidth;y++) {
+                    int count_ok=0;
+                    int count_brigth=0;
+                    int count_double=0;
+                    QRgb divrgb=divImage.pixel(x,y);
                     if(is_green(qRed(divrgb),qGreen(divrgb),qBlue(divrgb))) {   //IF PIXEL IS GREEN SCAN FIELDWIDTH*FIELDWIDTH FOR BUILDING SITE
-                        for(i=0;i<fieldwidth;i++){
-                            for(k=0;k<fieldwidth;k++){
+                        for(int i=0;i<fieldwidth;i++){
+                            for(int k=0;k<fieldwidth;k++){
                                 divrgb=divImage.pixel(x+i,y+k);
                                 if(is_green(qRed(divrgb),qGreen(divrgb),qBlue(divrgb))) {   //COUNT GREEN PIXELS
                                     count_ok++;

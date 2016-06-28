@@ -8,7 +8,6 @@ DsoFinder::event_data DsoFinder::get_events()
     int eventcount = 7;
 
     event* events = new event[eventcount];
-    i=0;
 
     events[0].caption = tr("None");
     events[0].id = 0;
