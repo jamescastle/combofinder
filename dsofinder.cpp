@@ -147,10 +147,13 @@ void DsoFinder::draw_discovery(QPoint coords, QColor color, Qt::PenStyle style)
         QPen pen_dev;
         QPainter paint_dev;
 
+        paint_dev.begin(&originalImage);
         pen_dev.setColor(color);
+        pen_dev.setWidth(5);
         pen_dev.setStyle(style);
         paint_dev.setPen(pen_dev);
         paint_dev.drawEllipse(coords,20,20);
+        paint_dev.end();
     }
 }
 
@@ -214,8 +217,6 @@ void DsoFinder::draw_valids() // DRAW ALL VALID DISCOVERYS
 void DsoFinder::on_findButton_clicked()
 {
     QElapsedTimer timer;
-    QPainter paint_dev;
-    QPen pen_dev;
 
     set_optionwindow(false);
     setactive(false);
@@ -225,11 +226,6 @@ void DsoFinder::on_findButton_clicked()
     totaldiscoverys = 0;
     discovery.clear();
     timer.start();  //START TIMER
-
-    //INIT PAINT-DEVICE
-    paint_dev.begin(&originalImage);
-    pen_dev.setWidth(5);
-    paint_dev.setPen(pen_dev);
 
     if(get_method()==0) {           //M E T H O D  1:  P I X E L  F O O T P R I N T S
 
@@ -334,6 +330,8 @@ void DsoFinder::on_findButton_clicked()
 
             //INIT ADDITIONAL PAINT DEVICE
             QPainter paint_dev2;
+            QPen pen_dev;
+            pen_dev.setWidth(5);
             paint_dev2.begin(&divImage);
             paint_dev2.setPen(pen_dev);
 
@@ -375,7 +373,6 @@ void DsoFinder::on_findButton_clicked()
     }
 
     //SHOW RESULTING IMAGE AND COUNT
-    paint_dev.end();
     ui->screenlabel->setPixmap(QPixmap::fromImage(originalImage).scaled(ui->screenlabel->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
     ui->countlabel->setText(QString("%1").arg(totaldiscoverys));
     ui->timelabel->setText(QString("%1").arg(timer.elapsed()));   //SHOW CALCULATION TIME IF IN DEBUG MODE. HELPFULL FOR CODE-OPTIMIZATION AND COMPILER COMPARISON.
