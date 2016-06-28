@@ -5,5 +5,6 @@
         <file alias="edit">edit.png</file>
         <file alias="delete">trash.png</file>
         <file alias="save">save.png</file>
+        <file alias="app_icon">combofinder.png</file>
     </qresource>
 </RCC>
