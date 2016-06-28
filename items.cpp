@@ -5,7 +5,6 @@
 // itemcount = TOTAL NUMBER OF ITEMS
 // items.shapecount = TOTAL NUMBER OF DIFFERENT PATTERNS OR SHAPES FOR ONE ITEM
 // items.shape.pixelcount = TOTAL NUMBER OF DEFINED PIXELS PER SHAPE
-// borderbox = AT LEAST THE MAXIMUM SPREAD OF RELATIVE X AND Y POSITIONS +1. IF DEFINED PIXELS HAVE e.g.: -1, -4, 2, 3 AS RELATIVE pos, THEN borderbox MUST BE AT LEAST 5! (abs(-4)+1)
 // FAILURE IN ANY OF THIS MAY LEAD TO CRASHES
 
 void DsoFinder::init_items()
@@ -19,7 +18,6 @@ void DsoFinder::init_items()
         delete [] items;
     }
 
-    borderbox = 10;
     itemcount = 1;  // initialize to 1 for player avatar
     if(config.useitems_basic) itemcount += 8;
     if(config.useitems_adventure) itemcount += 2;

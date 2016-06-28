@@ -261,8 +261,8 @@ void DsoFinder::on_findButton_clicked()
         player_avatar_data player_avatar;
 
         //MAIN SEARCH ALGORITHM
-        for(int x=borderbox;x<originalPixmap.width()-borderbox;x++) {       //SCAN IMAGE (X)
-            for(int y=borderbox;y<originalPixmap.height()-borderbox;y++) {  //SCAN IMAGE (Y)
+        for(int x=0;x<originalPixmap.width();x++) {       //SCAN IMAGE (X)
+            for(int y=0;y<originalPixmap.height();y++) {  //SCAN IMAGE (Y)
                 for(int i=0;i<itemcount;i++) {                          //SCAN FOR ALL DEFINED ITEMS (items.cpp)
                     bool item_found = false;
                     for(int j=0; j<items[i].shapecount; j++) {            //SCAN FOR ALL DEFINED SHAPES
@@ -272,12 +272,22 @@ void DsoFinder::on_findButton_clicked()
                             for(int k=0; k<items[i].shape[j].pixelcount; k++) //SCAN ALL DEFINED PIXELS OF ITEMS
                             {
                                 if(items[i].shape[j].pixelcount - items[i].shape[j].needed + shape_disc >= k) { //SPEED UP IF DISCOVERY IMPOSSIBLE
-                                    if( pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][0]>items[i].shape[j].pixel[k].r.min &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][0]<items[i].shape[j].pixel[k].r.max &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][1]>items[i].shape[j].pixel[k].g.min &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][1]<items[i].shape[j].pixel[k].g.max &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][2]>items[i].shape[j].pixel[k].b.min &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][2]<items[i].shape[j].pixel[k].b.max)
+                                    int trans_x = x + items[i].shape[j].pixel[k].pos.x_pos;
+                                    int trans_y = y + items[i].shape[j].pixel[k].pos.y_pos;
+
+                                    // make sure that the pixel we are looking at is within bounds
+                                    if (trans_x < 0 || trans_x >= d_width ||
+                                        trans_y < 0 || trans_y >= d_heigth)
+                                    {
+                                        continue;
+                                    }
+
+                                    if( pixels[trans_x][trans_y][0] > items[i].shape[j].pixel[k].r.min &&
+                                        pixels[trans_x][trans_y][0] < items[i].shape[j].pixel[k].r.max &&
+                                        pixels[trans_x][trans_y][1] > items[i].shape[j].pixel[k].g.min &&
+                                        pixels[trans_x][trans_y][1] < items[i].shape[j].pixel[k].g.max &&
+                                        pixels[trans_x][trans_y][2] > items[i].shape[j].pixel[k].b.min &&
+                                        pixels[trans_x][trans_y][2] < items[i].shape[j].pixel[k].b.max)
                                     {
                                         if(!items[i].shape[j].pixel[k].negating) shape_disc++;
                                         else shape_negating=true;

@@ -132,7 +132,7 @@ public:
     QImage originalImage;
 
     int totaldiscoverys;
-    int d_width,d_heigth,borderbox;
+    int d_width,d_heigth;
 
     bool debug;
     bool current_ontop_windowsetting;
