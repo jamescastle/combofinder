@@ -64,7 +64,7 @@ void DsoFinder::on_takeButton_clicked()
     if(!config.jump_position) config.position_small = this->pos();
     set_optionwindow(false);
     if(!config.stay_big) {
-        set_gui(true,debug);
+        hide();
         QElapsedTimer timer;
         timer.start();
         while(timer.elapsed()< config.waittime);                  // WAIT 600ms FOR PROPER RESIZING ON SLOWER MACHINES
@@ -75,7 +75,8 @@ void DsoFinder::on_takeButton_clicked()
     if (const QWindow *window = windowHandle())
         screen = window->screen();
     if (!screen) {
-        set_gui(false,debug);
+        if(!config.stay_big)
+            show();
         return;
     }
     originalPixmap = screen->grabWindow(0);
@@ -97,6 +98,10 @@ void DsoFinder::on_takeButton_clicked()
     //RESIZE TO FULL AND SHOW SCREENSHOT
     ui->screenlabel->setPixmap(originalPixmap.scaled(ui->screenlabel->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
     set_gui(false,debug);
+
+    // show UI if it was hidden
+    if(!config.stay_big)
+        show();
 }
 
 void DsoFinder::resizeEvent(QResizeEvent *event)
