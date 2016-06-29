@@ -34,16 +34,4 @@ CONFIG += static
 
 QMAKE_TARGET_DESCRIPTION = "DSO Combo-Finder"
 win32:RC_ICONS += combofinder.ico
-
-
-
-
-
-
-
-
-
-
-
-
-
+win32:RC_FILE = combofinder.rc
