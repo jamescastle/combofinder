@@ -1,10 +1,10 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource prefix="/icons">
-        <file alias="option">zahnrad.jpg</file>
-        <file alias="show">show.png</file>
-        <file alias="edit">edit.png</file>
-        <file alias="delete">trash.png</file>
-        <file alias="save">save.png</file>
-        <file alias="app_icon">combofinder.png</file>
+        <file alias="app_icon">icons/combofinder.png</file>
+        <file alias="show">icons/show.svg</file>
+        <file alias="edit">icons/edit.svg</file>
+        <file alias="save">icons/save.svg</file>
+        <file alias="delete">icons/delete.svg</file>
+        <file alias="option">icons/option.svg</file>
     </qresource>
 </RCC>

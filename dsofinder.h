@@ -15,6 +15,7 @@
 #include <QFile>
 #include <QInputDialog>
 #include <QTranslator>
+#include <QtSvg>
 
 namespace Ui {
     class DsoFinder;

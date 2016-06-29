@@ -1147,9 +1147,8 @@ background-color: rgb(255, 170, 0);</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normalon>:/icons/option</normalon>
-         </iconset>
+         <iconset resource="images.qrc">
+          <normaloff>:/icons/option</normaloff>:/icons/option</iconset>
         </property>
         <property name="iconSize">
          <size>
