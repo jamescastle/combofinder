@@ -19,7 +19,8 @@ SOURCES += main.cpp\
         settings.cpp \
         events.cpp
 
-HEADERS  += dsofinder.h
+HEADERS  += dsofinder.h \
+    version.h
 
 FORMS    += dsofinder.ui
 

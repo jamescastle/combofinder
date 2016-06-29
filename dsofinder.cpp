@@ -1,4 +1,5 @@
 #include "dsofinder.h"
+#include "version.h"
 #include "ui_dsofinder.h"
 #include "QScreen"
 #include "QWindow"
@@ -7,10 +8,6 @@ DsoFinder::DsoFinder(int argc,char* argv[],QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::DsoFinder)
 {
-    // VERSION PARAMETERS
-    currentversion = "2016-06-14";
-    cvid = 160614;
-
     //SET FLAGS FOR NON-DEFAULT WINDOW (NO MINIMIZE & MAXIMIZE BUTTON) AND TITLE
     //Qt::WindowFlags flags = Qt::CustomizeWindowHint|Qt::WindowTitleHint|Qt::WindowCloseButtonHint;
     //Qt::WindowFlags flags = Qt::WindowTitleHint|Qt::WindowCloseButtonHint;

@@ -17,6 +17,8 @@
 #include <QTranslator>
 #include <QtSvg>
 
+#include <version.h>
+
 namespace Ui {
     class DsoFinder;
 }
@@ -193,15 +195,9 @@ private slots:
 
     void on_itemadventurecheckBox_stateChanged(int arg1);
 
-//    void on_itemhalloween13checkBox_stateChanged(int arg1);
-
-//    void on_itemchristmas13checkBox_stateChanged(int arg1);
-
     void on_jumpcheckBox_stateChanged(int arg1);
 
     void on_staybigcheckBox_stateChanged(int arg1);
-
-//    void on_itemeastern14checkBox_stateChanged(int arg1);
 
     void on_colorstandardpushButton_clicked();
 
