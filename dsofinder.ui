@@ -210,7 +210,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>500</width>
+            <width>550</width>
             <height>60</height>
            </size>
           </property>
@@ -341,10 +341,16 @@
               </property>
               <item>
                <widget class="QPushButton" name="showbgButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>25</width>
+                  <height>16</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
-                  <width>75</width>
-                  <height>16777215</height>
+                  <width>38</width>
+                  <height>24</height>
                  </size>
                 </property>
                 <property name="toolTip">
@@ -359,14 +365,26 @@
                 </property>
                 <property name="iconSize">
                  <size>
-                  <width>16</width>
-                  <height>16</height>
+                  <width>20</width>
+                  <height>20</height>
                  </size>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="bg_editpushButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>25</width>
+                  <height>16</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>38</width>
+                  <height>24</height>
+                 </size>
+                </property>
                 <property name="toolTip">
                  <string>Edit caption</string>
                 </property>
@@ -381,6 +399,18 @@
               </item>
               <item>
                <widget class="QPushButton" name="bgdeletepushButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>25</width>
+                  <height>16</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>38</width>
+                  <height>24</height>
+                 </size>
+                </property>
                 <property name="toolTip">
                  <string>Delete BG</string>
                 </property>
@@ -397,10 +427,16 @@
             </item>
             <item>
              <widget class="QPushButton" name="savebgButton">
+              <property name="minimumSize">
+               <size>
+                <width>25</width>
+                <height>16</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
-                <width>75</width>
-                <height>16777215</height>
+                <width>38</width>
+                <height>24</height>
                </size>
               </property>
               <property name="toolTip">
@@ -425,9 +461,6 @@
        <spacer name="horizontalSpacer_5">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
