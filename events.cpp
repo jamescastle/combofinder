@@ -5,7 +5,7 @@
 
 DsoFinder::event_data DsoFinder::get_events()
 {
-    int eventcount = 7;
+    int eventcount = 8;
 
     event* events = new event[eventcount];
 
@@ -36,6 +36,10 @@ DsoFinder::event_data DsoFinder::get_events()
     events[6].caption = tr("Easter 2015+");
     events[6].id = 6;
     events[6].itemcount = 1;
+
+    events[7].caption = tr("Anniversary 2018");
+    events[7].id = 7;
+    events[7].itemcount = 2;
 
     event_data my_events;
     my_events.eventcount = eventcount;

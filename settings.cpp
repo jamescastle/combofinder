@@ -72,8 +72,8 @@ void DsoFinder::init_ui_options()
 
     ui->languagecomboBox->setCurrentText(config.language);
     select_language(config.language);
-
-    ui->bgcomboBox->view()->setMinimumWidth(150);
+// ui->bgcomboBox->view()->setMinimumWidth(150)      ( not supported with QT 5.11.+)
+    ui->bgcomboBox->setMinimumWidth(150);
     for(int i=0;i<bg_count;i++) {
         ui->bgcomboBox->addItem(QString("%1: %2").arg(i+1).arg(config.bg_caption[i]));
     }

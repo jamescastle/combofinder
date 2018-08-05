@@ -84,188 +84,212 @@
     </message>
     <message>
         <location filename="../dsofinder.ui" line="541"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this, if you want to use half-sized grafics&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;aktiviere hier, wenn du Halbsize-Grafiken benutzt &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dsofinder.ui" line="544"/>
+        <source>Use halfisize</source>
+        <translation>Benutze Habsize Grafik</translation>
+    </message>
+    <message>
+        <location filename="../dsofinder.ui" line="559"/>
+        <source>Halfsized grafics</source>
+        <translation>Halbsize Grafik</translation>
+    </message>
+    <message>
+        <location filename="../dsofinder.ui" line="586"/>
         <source>Take Screen Hit</source>
         <translation>&quot;Screenshot&quot; angeklickt</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="547"/>
+        <location filename="../dsofinder.ui" line="592"/>
         <source>Jump to previous position</source>
         <translation>Springe auf vorherige Position</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="554"/>
+        <location filename="../dsofinder.ui" line="599"/>
         <source>Stay big</source>
         <translation>Bleibe maximiert</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="599"/>
+        <location filename="../dsofinder.ui" line="644"/>
         <source>Performance / Appearance</source>
         <translation>Leistung / Darstellung</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="618"/>
+        <location filename="../dsofinder.ui" line="663"/>
         <source>Include Items</source>
         <translation>Zu suchende Sammlerstücke</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="624"/>
+        <location filename="../dsofinder.ui" line="669"/>
         <source>Basic</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="631"/>
+        <location filename="../dsofinder.ui" line="676"/>
         <source>Adventure</source>
         <translation>Abenteuer</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="644"/>
+        <location filename="../dsofinder.ui" line="689"/>
         <source>Choose event:</source>
         <translation>Wähle Event:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="688"/>
+        <location filename="../dsofinder.ui" line="733"/>
         <source>Take Screen Waittime for Resize</source>
         <translation>Wartezeit vor Größenänderung</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="782"/>
+        <location filename="../dsofinder.ui" line="827"/>
         <source>Searchtimer</source>
         <translation>Suchzeit</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="791"/>
+        <location filename="../dsofinder.ui" line="836"/>
         <source>Show</source>
         <translation>Anzeigen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="826"/>
+        <location filename="../dsofinder.ui" line="871"/>
         <source>Colors</source>
         <translation>Farben</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="844"/>
+        <location filename="../dsofinder.ui" line="889"/>
         <source>Std.:</source>
         <translation>Std.:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="905"/>
+        <location filename="../dsofinder.ui" line="950"/>
         <source>Event:</source>
         <translation>Event:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="945"/>
+        <location filename="../dsofinder.ui" line="990"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="989"/>
+        <location filename="../dsofinder.ui" line="1034"/>
         <source>Options</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="1099"/>
+        <location filename="../dsofinder.ui" line="1144"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.ui" line="1138"/>
+        <location filename="../dsofinder.ui" line="1183"/>
         <source>!!Zoom out as far as possible!!</source>
         <translation>!! So weit herauszoomen wie möglich !!</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="271"/>
+        <location filename="../dsofinder.cpp" line="297"/>
         <source>Background file has wrong resolution!</source>
         <translation>Das Referenzbild hat die falsche Auflösung!</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="276"/>
-        <location filename="../dsofinder.cpp" line="394"/>
+        <location filename="../dsofinder.cpp" line="302"/>
+        <location filename="../dsofinder.cpp" line="423"/>
         <source>No valid background file.</source>
         <translation>Kein gültiges Referenzbild.</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="368"/>
+        <location filename="../dsofinder.cpp" line="397"/>
         <source>Main Island S5</source>
         <translation>Hauptinsel S5</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="369"/>
+        <location filename="../dsofinder.cpp" line="398"/>
         <source>Save in Slot %1</source>
         <translation>In Slot %1 speichern</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="369"/>
+        <location filename="../dsofinder.cpp" line="398"/>
         <source>Enter caption:</source>
         <translation>Beschreibung:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="378"/>
+        <location filename="../dsofinder.cpp" line="407"/>
         <source>Confirm overwrite</source>
         <translation>Überschreiben bestätigen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="378"/>
+        <location filename="../dsofinder.cpp" line="407"/>
         <source>Do you really want to replace the background in Slot %1?</source>
         <translation>Willst du das Referenzbild in Slot %1 wirklich überschreiben?</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="403"/>
+        <location filename="../dsofinder.cpp" line="432"/>
         <source>Edit Slot %1</source>
         <translation>Bearbeite Slot %1</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="403"/>
+        <location filename="../dsofinder.cpp" line="432"/>
         <source>Enter new caption:</source>
         <translation>Neue Beschreibung eingeben:</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="413"/>
+        <location filename="../dsofinder.cpp" line="442"/>
         <source>Delete Background</source>
         <translation>Referenzbild löschen</translation>
     </message>
     <message>
-        <location filename="../dsofinder.cpp" line="413"/>
+        <location filename="../dsofinder.cpp" line="442"/>
         <source>Do you really want to delete the background file in Slot %1?</source>
         <translation>Willst du das Referenzbild in Slot %1 wirklich löschen?</translation>
     </message>
     <message>
-        <location filename="../events.cpp" line="13"/>
+        <location filename="../events.cpp" line="12"/>
         <source>None</source>
         <translation>Keins</translation>
     </message>
     <message>
-        <location filename="../events.cpp" line="17"/>
+        <location filename="../events.cpp" line="16"/>
         <source>Halloween 2013</source>
         <translation>Halloween 2013</translation>
     </message>
     <message>
-        <location filename="../events.cpp" line="21"/>
+        <location filename="../events.cpp" line="20"/>
         <source>Christmas Events</source>
         <translation>Weihnachtsevents</translation>
     </message>
     <message>
-        <location filename="../events.cpp" line="29"/>
+        <location filename="../events.cpp" line="28"/>
         <source>Soccer Events</source>
         <translation>Fußballevents</translation>
     </message>
     <message>
-        <location filename="../events.cpp" line="33"/>
+        <location filename="../events.cpp" line="32"/>
         <source>Halloween 2014+</source>
         <translation>Halloween 2014+</translation>
     </message>
     <message>
-        <location filename="../events.cpp" line="37"/>
+        <location filename="../events.cpp" line="36"/>
         <source>Easter 2015+</source>
         <translation>Ostern 2015+</translation>
+    </message>
+    <message>
+        <location filename="../events.cpp" line="40"/>
+        <source>Anniversary 2018</source>
+        <translation>Jubiläum 2018</translation>
     </message>
     <message>
         <source>Christmas 2013/14</source>
         <translation type="vanished">Weihnachten 2013/14</translation>
     </message>
     <message>
-        <location filename="../events.cpp" line="25"/>
+        <location filename="../events.cpp" line="24"/>
         <source>Easter 2014</source>
         <translation>Ostern 2014</translation>
+    </message>
+    <message>
+        <source>Anniverary 2018</source>
+        <translation type="vanished">Jubiläum 2018</translation>
     </message>
     <message>
         <source>Soccer WM 2014</source>
@@ -280,7 +304,7 @@
         <translation type="vanished">Ostern 2015</translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="67"/>
+        <location filename="../settings.cpp" line="80"/>
         <source>+: New Slot</source>
         <translation>+: Neuer Slot</translation>
     </message>
