@@ -8,8 +8,8 @@ DsoFinder::DsoFinder(int argc,char* argv[],QWidget *parent) :
     ui(new Ui::DsoFinder)
 {
     // VERSION PARAMETERS
-    currentversion = "2016-06-14";
-    cvid = 160614;
+    currentversion = "2018-08-06";
+    cvid = 180806;
 
     //SET FLAGS FOR NON-DEFAULT WINDOW (NO MINIMIZE & MAXIMIZE BUTTON) AND TITLE
     //Qt::WindowFlags flags = Qt::CustomizeWindowHint|Qt::WindowTitleHint|Qt::WindowCloseButtonHint;
