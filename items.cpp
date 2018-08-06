@@ -5,7 +5,6 @@
 // itemcount = TOTAL NUMBER OF ITEMS
 // items.shapecount = TOTAL NUMBER OF DIFFERENT PATTERNS OR SHAPES FOR ONE ITEM
 // items.shape.pixelcount = TOTAL NUMBER OF DEFINED PIXELS PER SHAPE
-// borderbox = AT LEAST THE MAXIMUM SPREAD OF RELATIVE X AND Y POSITIONS +1. IF DEFINED PIXELS HAVE e.g.: -1, -4, 2, 3 AS RELATIVE pos, THEN borderbox MUST BE AT LEAST 5! (abs(-4)+1)
 // FAILURE IN ANY OF THIS MAY LEAD TO CRASHES
 
 void DsoFinder::init_items()
@@ -19,8 +18,7 @@ void DsoFinder::init_items()
         delete [] items;
     }
 
-    borderbox = 10;
-    itemcount = 0;
+    itemcount = 1;  // initialize to 1 for player avatar
     if(config.useitems_basic) itemcount += 8;
     if(config.useitems_adventure) itemcount += 2;
 
@@ -31,6 +29,25 @@ void DsoFinder::init_items()
 
     items = new item[itemcount];
     int i=0;
+
+    // player area
+    items[i].caption = "Player Avatar";
+    items[i].item_type = "player_avatar";
+    items[i].color = QColor(0,0,0);
+    items[i].alt_color = QColor(0,0,0);
+    items[i].penstyle = Qt::SolidLine;
+    items[i].width = 123;
+    items[i].height = 299;
+    items[i].shapecount = 1;
+    items[i].shape = new item_shape[items[i].shapecount];
+    items[i].shape[0].needed = 3;
+    items[i].shape[0].pixelcount = 4;
+    items[i].shape[0].pixel = new pixel_data[items[i].shape[0].pixelcount];
+    items[i].shape[0].pixel[0] = getPixel(255, 255,   0, 5, 124, 137);
+    items[i].shape[0].pixel[1] = getPixel(210,  35,  29, 5, 114, 134);
+    items[i].shape[0].pixel[2] = getPixel(179,  69,  57, 5, 94, 288);
+    items[i].shape[0].pixel[3] = getPixel(167,  64,  53, 5, 94, 397);
+    i++;
 
     if(!config.usehalfsize) //All Items for normal size
     {
@@ -2258,4 +2275,31 @@ void DsoFinder::init_items()
 
         }
     }
+}
+
+DsoFinder::pixel_data DsoFinder::getPixel(int r, int g, int b, int epsilon, int x_pos, int y_pos) {
+    pixel_data pixel;
+    // clamp to -1 / 256 because of </> instead of <=/>= comparison
+    pixel.r.min = std::max(-1, r - epsilon);
+    pixel.r.max = std::min(256, r + epsilon);
+    pixel.g.min = std::max(-1, g - epsilon);
+    pixel.g.max = std::min(256, g + epsilon);
+    pixel.b.min = std::max(-1, b - epsilon);
+    pixel.b.max = std::min(256, b + epsilon);
+    pixel.pos.x_pos = x_pos;
+    pixel.pos.y_pos = y_pos;
+    return pixel;
+}
+
+DsoFinder::pixel_data DsoFinder::getPixel(int r_min, int r_max, int g_min, int g_max, int b_min, int b_max, int x, int y) {
+    pixel_data pixel;
+    pixel.r.min = r_min;
+    pixel.r.max = r_max;
+    pixel.g.min = g_min;
+    pixel.g.max = g_max;
+    pixel.b.min = b_min;
+    pixel.b.max = b_max;
+    pixel.pos.x_pos = x;
+    pixel.pos.y_pos = y;
+    return pixel;
 }

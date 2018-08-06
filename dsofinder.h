@@ -60,8 +60,18 @@ public:
         QColor color;
         QColor alt_color;
         Qt::PenStyle penstyle;
+        int width;
+        int height;
 
-        item():item_type("standard"){}
+        item():item_type("standard"), width(0), height(0) {}
+    };
+
+    struct player_avatar_data {
+        bool found;
+        pixel_pos min_pos;
+        pixel_pos max_pos;
+
+        player_avatar_data():found(false){}
     };
 
     struct event {
@@ -102,7 +112,6 @@ public:
     item* items;
     int itemcount;
     int*** pixels;
-    int avatar_width, avatar_heigth;
     QVector<QVector<int> > discovery;
 
     //BUILDING_SITE_RELATED OBJECTS/VARIABLES
@@ -123,7 +132,7 @@ public:
     QImage originalImage;
 
     int totaldiscoverys;
-    int d_width,d_heigth,borderbox;
+    int d_width,d_heigth;
 
     bool debug;
     bool current_ontop_windowsetting;
@@ -140,7 +149,7 @@ public:
     void setactive(bool active);
     void activate_buttons(bool activate);
     void log_discoverys();
-    void validate_discoverys();
+    void validate_discoverys(player_avatar_data player_avatar);
     void draw_valids();
     void draw_discovery(QPoint coords, QColor color, Qt::PenStyle style);
     void init_items();
@@ -156,6 +165,8 @@ public:
     bool is_brigth(int g);
 
     void populate_event_combo();
+    pixel_data getPixel(int r, int g, int b, int epsilon, int x_pos, int y_pos);
+    pixel_data getPixel(int r_min, int r_max, int g_min, int g_max, int b_min, int b_max, int x, int y);
 protected:
     void resizeEvent(QResizeEvent* event);
     void changeEvent(QEvent *e);

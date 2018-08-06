@@ -32,8 +32,6 @@ DsoFinder::DsoFinder(int argc,char* argv[],QWidget *parent) :
     //INIT VARS
     d_width = 0;
     d_heigth = 0;
-    avatar_width = 125;
-    avatar_heigth = 280;
     bg_exist = false;
     bg_count = get_bgcount(); //CHECK CURRENT DIRECTORY FOR VALID BACKGROUND FILES
     itemcount = 0;
@@ -66,7 +64,7 @@ void DsoFinder::on_takeButton_clicked()
     if(!config.jump_position) config.position_small = this->pos();
     set_optionwindow(false);
     if(!config.stay_big) {
-        set_gui(true,debug);
+        hide();
         QElapsedTimer timer;
         timer.start();
         while(timer.elapsed()< config.waittime);                  // WAIT 600ms FOR PROPER RESIZING ON SLOWER MACHINES
@@ -77,7 +75,8 @@ void DsoFinder::on_takeButton_clicked()
     if (const QWindow *window = windowHandle())
         screen = window->screen();
     if (!screen) {
-        set_gui(false,debug);
+        if(!config.stay_big)
+            show();
         return;
     }
     originalPixmap = screen->grabWindow(0);
@@ -99,6 +98,10 @@ void DsoFinder::on_takeButton_clicked()
     //RESIZE TO FULL AND SHOW SCREENSHOT
     ui->screenlabel->setPixmap(originalPixmap.scaled(ui->screenlabel->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
     set_gui(false,debug);
+
+    // show UI if it was hidden
+    if(!config.stay_big)
+        show();
 }
 
 void DsoFinder::resizeEvent(QResizeEvent *event)
@@ -179,27 +182,38 @@ void DsoFinder::log_discoverys() // WRITE ALL DISCOVERYS IN LOGFILE
     }
 }
 
-void DsoFinder::validate_discoverys() // CHECK FOR SEPARATION OF DISCOVERYS AND DISCARD BUNCHED FALSE POSITIVES e.g. IN AVATAR
+void DsoFinder::validate_discoverys(player_avatar_data player_avatar) // CHECK FOR SEPARATION OF DISCOVERYS AND DISCARD BUNCHED FALSE POSITIVES e.g. IN AVATAR
 {
-    for(int i_dis = 0; i_dis<discovery.size();i_dis++) {
-        //if(discovery[i_dis][4] != 0) {
-            //for(int j_dis = 0; j_dis<discovery.size();j_dis++) {
-             for(int j_dis = i_dis+1; j_dis<discovery.size();j_dis++)
-             {
-                if ((i_dis != j_dis) && ((abs(discovery[i_dis][0]-discovery[j_dis][0])+abs(discovery[i_dis][1]-discovery[j_dis][1])<5)))
-                {
-                    discovery[i_dis][4] = 0;
-                    discovery[j_dis][4] = 0;
-                    fprintf(results,"Discarded discoverys %d and %d because of too low separation\n",i_dis,j_dis);
-                }
-             }
+    if(player_avatar.found)
+    {
+        for(int i_dis = 0; i_dis < discovery.size(); i_dis++)
+        {
+            if((discovery[i_dis][0] >= player_avatar.min_pos.x_pos) && (discovery[i_dis][1] >= player_avatar.min_pos.y_pos) &&
+               (discovery[i_dis][0] <= player_avatar.max_pos.x_pos) && (discovery[i_dis][1] <= player_avatar.max_pos.y_pos))
+            {
+                discovery[i_dis][4] = 0;
+                fprintf(results,"Discarded discovery %d because it is within player avatar\n",i_dis);
+            }
+        }
+    }
 
-             if ((discovery[i_dis][4] != 0) && (discovery[i_dis][0] < avatar_width && discovery[i_dis][1] < avatar_heigth)) //CHECK IF REST IS IN AVATAR
-             {
-                 discovery[i_dis][4] = 0;
-                 fprintf(results,"Discarded discovery %d because of Avatar\n",i_dis);
-             }
-        //}
+    for(int i_dis = 0; i_dis<discovery.size() - 1;i_dis++)
+    {
+        if(discovery[i_dis][4] == 0)
+            continue;
+
+         for(int j_dis = i_dis+1; j_dis<discovery.size();j_dis++)
+         {
+            if(discovery[j_dis][4] == 0)
+                continue;
+
+            if ((i_dis != j_dis) && ((abs(discovery[i_dis][0]-discovery[j_dis][0])+abs(discovery[i_dis][1]-discovery[j_dis][1])<5)))
+            {
+                discovery[i_dis][4] = 0;
+                discovery[j_dis][4] = 0;
+                fprintf(results,"Discarded discoverys %d and %d because of too low separation\n",i_dis,j_dis);
+            }
+         }
     }
 }
 
@@ -249,9 +263,11 @@ void DsoFinder::on_findButton_clicked()
             }
         }
 
+        player_avatar_data player_avatar;
+
         //MAIN SEARCH ALGORITHM
-        for(int x=borderbox;x<originalPixmap.width()-borderbox;x++) {       //SCAN IMAGE (X)
-            for(int y=borderbox;y<originalPixmap.height()-borderbox;y++) {  //SCAN IMAGE (Y)
+        for(int x=0;x<originalPixmap.width();x++) {       //SCAN IMAGE (X)
+            for(int y=0;y<originalPixmap.height();y++) {  //SCAN IMAGE (Y)
                 for(int i=0;i<itemcount;i++) {                          //SCAN FOR ALL DEFINED ITEMS (items.cpp)
                     bool item_found = false;
                     for(int j=0; j<items[i].shapecount; j++) {            //SCAN FOR ALL DEFINED SHAPES
@@ -261,12 +277,22 @@ void DsoFinder::on_findButton_clicked()
                             for(int k=0; k<items[i].shape[j].pixelcount; k++) //SCAN ALL DEFINED PIXELS OF ITEMS
                             {
                                 if(items[i].shape[j].pixelcount - items[i].shape[j].needed + shape_disc >= k) { //SPEED UP IF DISCOVERY IMPOSSIBLE
-                                    if( pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][0]>items[i].shape[j].pixel[k].r.min &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][0]<items[i].shape[j].pixel[k].r.max &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][1]>items[i].shape[j].pixel[k].g.min &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][1]<items[i].shape[j].pixel[k].g.max &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][2]>items[i].shape[j].pixel[k].b.min &&
-                                        pixels[x+items[i].shape[j].pixel[k].pos.x_pos][y+items[i].shape[j].pixel[k].pos.y_pos][2]<items[i].shape[j].pixel[k].b.max)
+                                    int trans_x = x + items[i].shape[j].pixel[k].pos.x_pos;
+                                    int trans_y = y + items[i].shape[j].pixel[k].pos.y_pos;
+
+                                    // make sure that the pixel we are looking at is within bounds
+                                    if (trans_x < 0 || trans_x >= d_width ||
+                                        trans_y < 0 || trans_y >= d_heigth)
+                                    {
+                                        continue;
+                                    }
+
+                                    if( pixels[trans_x][trans_y][0] > items[i].shape[j].pixel[k].r.min &&
+                                        pixels[trans_x][trans_y][0] < items[i].shape[j].pixel[k].r.max &&
+                                        pixels[trans_x][trans_y][1] > items[i].shape[j].pixel[k].g.min &&
+                                        pixels[trans_x][trans_y][1] < items[i].shape[j].pixel[k].g.max &&
+                                        pixels[trans_x][trans_y][2] > items[i].shape[j].pixel[k].b.min &&
+                                        pixels[trans_x][trans_y][2] < items[i].shape[j].pixel[k].b.max)
                                     {
                                         if(!items[i].shape[j].pixel[k].negating) shape_disc++;
                                         else shape_negating=true;
@@ -280,6 +306,16 @@ void DsoFinder::on_findButton_clicked()
                                 //totaldiscoverys++;
                                 //if(items[i].item_type.compare(QString("standard"))==0) { draw_discovery(QPoint(x,y),config.items_standard_color,items[i].penstyle); }
                                 //else {draw_discovery(QPoint(x,y),config.items_event_color,items[i].penstyle);};
+
+                                if(items[i].item_type.compare(QString("player_avatar"))==0)
+                                {
+                                    player_avatar.found = true;
+                                    player_avatar.min_pos.x_pos = x;
+                                    player_avatar.min_pos.y_pos = y;
+                                    player_avatar.max_pos.x_pos = items[i].width + x;
+                                    player_avatar.max_pos.y_pos = items[i].height + y;
+                                }
+
                             }
                         }
                     }
@@ -287,7 +323,7 @@ void DsoFinder::on_findButton_clicked()
             }
         }
         log_discoverys();
-        validate_discoverys();
+        validate_discoverys(player_avatar);
         draw_valids();
 
     } else if(get_method()==1) {                // M E T H O D  2:  B U I L D I N G S I T E S
